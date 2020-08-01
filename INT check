@@ -1,0 +1,47 @@
+//
+//  Is it an integer?
+//  Coded added to keep inputting until an integr is entered.
+//
+//  Created by Peter Westervelt on 31-JULY-2020.
+//  C program to find if input is an integer
+//
+
+#include <iostream>
+#include <string>
+
+
+int main(){
+   
+   std::string entry ("");
+   bool test = true;
+   bool l_control = false;
+   
+   
+   while (l_control == false){
+      test = true;
+      std::cout << "Input  :";
+      std::cin >> entry;
+   
+      for (int i = 0; i < entry.length(); i++)
+      {
+         if (isdigit(entry[i]) == false)
+         {
+            test = false;
+         }
+         else
+         {
+            if (test == false) test = false;
+            else test = true;
+         }
+      }
+      if (test == true)
+      {
+         std::cout << "It's an Intger\n\n";
+         l_control = true;
+      }
+      else
+      {
+         std::cout << "It's NOT an Intger\n\n";
+      }
+}
+}
