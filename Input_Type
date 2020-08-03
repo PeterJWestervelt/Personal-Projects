@@ -1,0 +1,49 @@
+//
+//  main.cpp
+//  Input Type
+//
+//  Created by Peter Westervelt on 31-JULY-2020.
+//  C program to find if input is an integer
+//
+
+#include <iostream>
+#include <string>
+
+int main()
+{
+   std::string entry (""), check;
+   int deccount = 0, signcount=0, strcount = 0, signloc = 0;
+   bool test = false;
+   
+   std::cout << "Input  :";
+   std::cin >> entry;
+   std::cout << "\n";
+   
+   for (int i = 0; i < entry.length(); i++)
+   {
+      if (isdigit(entry[i]) == false)
+      {
+            test = true;
+            check = entry[i];
+            if (check == "." && deccount == 0) deccount += 1;
+            if (check == "-" && signcount == 0)
+            {
+               signcount += 1;
+               signloc = i;
+            }
+            strcount += 1;
+      }
+   }
+   if (test == true && ((strcount - deccount-signcount) || (signloc > 0)) > 0)
+      {
+      std::cout << "Entry is a string.\n";
+      }
+   else if (test == true && deccount == 1 && (signcount == 1 || signcount == 0))
+      {
+      std::cout << "Entry is a real number.\n";
+      }
+   else
+      {
+      std::cout << "Entry is an integer.\n";
+      }
+}
