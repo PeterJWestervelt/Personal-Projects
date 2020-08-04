@@ -1,0 +1,57 @@
+
+#include <iostream>
+#include <vector>
+#include <iomanip>
+
+int main(int argc, const char * argv[])
+{
+   std::vector<double> serving = {0, 0, 0, 0};
+   
+   std::vector<std::string> food = {"Eggs     ", "Meat, g  ", "Veg, g   ", "Fat, g   "};
+      
+   std::vector< std::vector<double> > foods {
+      {1, 5, 0, 0, 6, 69},
+      {112, 8, 0, 0, 23, 164},
+      {81, 0, 5, 3, 1, 24},
+      {14, 14, 0, 0, 0, 126}};
+   
+   std::vector< std::vector<double> > totals{
+      {1,1,1,1,1,1},
+      {1,1,1,1,1,1},
+      {1,1,1,1,1,1},
+      {1,1,1,1,1,1}};
+   
+   int Tcal = 0;
+
+   for (int j = 0; j <4; j++){
+      std::cout << "Please enter servings of "  << food[j] << ":  ";
+      std::cin >> totals[j][0];
+   }
+   std::cout << "\n";
+   for (int i =1; i < 6; i++)
+   {
+      for (int j = 0; j < 4; j++)
+      {
+         totals[j][i] = foods[j][i] * totals[j][0]/foods[j][0];
+         if (i == 5) Tcal = Tcal + totals [j][i];
+      }
+   }
+
+//   Tcal = Teggs[5] + Tmeat[5] + Tveg[5] + Tfat[5];
+
+   std::cout << "Food       Servings       Fat     Carbs   N-Carbs  Protein   Calories\n";
+   std::cout << "---------------------------------------------------------------------\n";
+   
+   for (int j = 0; j < 4; j++)
+   {
+      std::cout << food[j];
+      
+      for (int i = 0; i < 6; i++)
+      {
+         std::cout << std::setw(10) << totals[j][i];
+      }
+      std::cout << "\n";
+   }
+      
+   std::cout << "                                          Total Calories = "<< std::setw(10) << Tcal << "\n";   
+}
